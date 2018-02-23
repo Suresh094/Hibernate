@@ -2,8 +2,10 @@ package com.suresh.Entitys;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,12 +44,29 @@ public class Products {
 	 * CascadeType.ALL) private List<OrdersProducts> ordersProducts;
 	 * 
 	 */
-	@OneToMany
-	@JoinColumn(name = "product_id")
+	@OneToMany(mappedBy = "products",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<OrdersProducts> ordersProducts;
 
 	public Products() {
 		super();
 	}
+
+  	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Products\n [productidPk=");
+		builder.append(productidPk+ "\n");
+		builder.append(", name=");
+		builder.append(name+ "\n");
+		builder.append(", description=");
+		builder.append(description+ "\n");
+		builder.append(", price=");
+		builder.append(price);
+		builder.append("]\n");
+		
+		return builder.toString();
+	}
+	
+	
 
 }

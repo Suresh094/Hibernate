@@ -11,15 +11,17 @@
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/HibernateDB?createDatabaseIfNotExist=true</property>
 		<property name="hibernate.connection.username">scott</property>
 		<property name="hibernate.connection.password">tiger</property>
+		
 
-		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hibernate.hbm2ddl.auto">create</property> 
 
 
 		<!-- Echo all executed SQL to stdout -->
-		<property name="show_sql">true</property>
+		<!-- <property name="show_sql">true</property>  -->
 
 		<!-- Include all the mapping pojo classes -->
 		<mapping class="com.suresh.Entitys.Customers" />
+		<mapping class="com.suresh.Entitys.Address" />
 		<mapping class="com.suresh.Entitys.Orders" />
 		<mapping class="com.suresh.Entitys.Products" />
 		<mapping class="com.suresh.Entitys.OrdersProducts" />

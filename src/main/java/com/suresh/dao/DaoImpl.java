@@ -24,9 +24,9 @@ public class DaoImpl implements Dao {
 
 	public Customers loadCustomer(Integer stdId) throws CustomException {
 		Session session = getSession();
-		Customers student = (Customers) session.get(Customers.class, stdId);
+		Customers customer = (Customers) session.get(Customers.class, stdId);
 		session.close();
-		return student;
+		return customer;
 	}
 
 	public void updateCustomer(Customers std) throws CustomException {
@@ -46,8 +46,8 @@ public class DaoImpl implements Dao {
 		Session session = getSession();
 		Transaction transaction = session.beginTransaction();
 		try {
-			Customers student = (Customers) session.get(Customers.class, stdId.intValue());
-			session.delete(student);
+			Customers customer = (Customers) session.get(Customers.class, stdId.intValue());
+			session.delete(customer);
 			transaction.commit();
 		} catch(Exception e) {
 			transaction.rollback();

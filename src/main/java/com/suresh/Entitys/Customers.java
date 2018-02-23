@@ -11,12 +11,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "Customer", uniqueConstraints = { @UniqueConstraint(columnNames = "first_name"),
+@Table(name = "customer", uniqueConstraints = { @UniqueConstraint(columnNames = "first_name"),
 		@UniqueConstraint(columnNames = "last_name") })
 
 // @Data
@@ -52,9 +54,31 @@ public class Customers {
 	@Column(name = "billing_country")
 	private String billingCountry;
 
-	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	// @JoinColumn(val)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "customer_id")
 	private List<Orders> orders;
+
+	@OneToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name="address_id")
+	private Address address;
+	
+	
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public void setCustIdPk(Integer custIdPk) {
+		this.custIdPk = custIdPk;
+	}
+
+	public void setBillingZip(Integer billingZip) {
+		this.billingZip = billingZip;
+	}
 
 	public int getCustIdPk() {
 		return custIdPk;
